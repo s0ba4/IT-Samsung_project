@@ -28,7 +28,7 @@ public class Parser {
             }
             if (Character.isDigit(currentChar)) {
                 StringBuilder number = new StringBuilder();
-                while (i < text.length() && Character.isDigit(text.charAt(i))) {
+                while (i < text.length() && (Character.isDigit(text.charAt(i)) || text.charAt(i) == '.')) {
                     number.append(text.charAt(i));
                     i++;
                 }
