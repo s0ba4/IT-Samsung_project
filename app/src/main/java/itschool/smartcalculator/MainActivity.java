@@ -16,6 +16,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         EditText editText = findViewById(R.id.editText);
         Button button = findViewById(R.id.button);
-        button.setOnClickListener(v -> Toast.makeText(getApplicationContext(), editText.getText(), Toast.LENGTH_SHORT).show());
+        button.setOnClickListener(v -> {
+            Parser parser = new Parser();
+            Toast.makeText(getApplicationContext(), parser.parse(editText.getText().toString()).toString(), Toast.LENGTH_SHORT).show();
+        });
     }
 }
