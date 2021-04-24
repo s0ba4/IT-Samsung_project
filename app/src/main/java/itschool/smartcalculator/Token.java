@@ -11,10 +11,18 @@ public class Token {
 
     @Override
     public String toString() {
-        return "Token{" + type +
-                ", content='" + content + '\'' +
-                '}';
+        switch (type){
+            case NUMBER:
+                return "NUMBER(" + content + ")";
+            case OPERATOR:
+                return "OPERATOR(" + content + ")";
+            case FUNCTION:
+                return "FUNCTION(" + content + ")";
+            case VARIABLE:
+                return "x";
+        }
+        return null;
     }
 
-    enum TokenType {NUMBER, OPERATOR, FUNCTION}
+    enum TokenType {NUMBER, OPERATOR, FUNCTION, VARIABLE}
 }
