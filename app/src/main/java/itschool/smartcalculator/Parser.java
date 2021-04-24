@@ -33,13 +33,11 @@ public class Parser {
                     i++;
                 }
                 tokens.add(new Token(NUMBER, number.toString()));
-                System.out.println(currentChar);
                 i--;
             }
-            if (currentChar == 'x'){
+            if (currentChar == 'x') {
                 tokens.add(new Token(VARIABLE, String.valueOf(currentChar)));
-            }
-            else if (Character.isAlphabetic(currentChar)){
+            } else if (Character.isAlphabetic(currentChar)) {
                 StringBuilder name = new StringBuilder();
                 while (i < text.length() && (Character.isAlphabetic(text.charAt(i)))) {
                     name.append(text.charAt(i));
@@ -47,11 +45,9 @@ public class Parser {
                 }
                 if (functions.contains(name.toString())) {
                     tokens.add(new Token(FUNCTION, name.toString()));
-                }
-                else {
+                } else {
                     throw new IllegalArgumentException("Недопустимый символ: " + name);
                 }
-                System.out.println(currentChar);
                 i--;
             }
             i++;
