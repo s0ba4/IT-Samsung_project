@@ -1,5 +1,7 @@
 package itschool.xcalculator;
 
+import java.util.Objects;
+
 public class Token {
     public final TokenType type;
     public final String content;
@@ -48,4 +50,18 @@ public class Token {
     }
 
     enum TokenType {NUMBER, OPERATOR, FUNCTION, VARIABLE}
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Token token = (Token) o;
+        return type == token.type &&
+                content.equals(token.content);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(type, content);
+    }
 }
