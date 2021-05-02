@@ -11,6 +11,10 @@ public class Token {
         this.content = content;
     }
 
+    public double getNumberValue (){
+        return Double.parseDouble(content);
+    }
+
     public boolean isLeftBracket() {
         return type == TokenType.OPERATOR && content.equals("(");
     }

@@ -13,7 +13,7 @@ import static itschool.xcalculator.Token.TokenType.VARIABLE;
 public class Parser {
     public ArrayList<Token> parse(String text) {
         ArrayList<Token> tokens = new ArrayList<>();
-        HashSet operators = new HashSet<String>(Arrays.asList("+", "-", "*", "/", "(", ")"));
+        HashSet operators = new HashSet<String>(Arrays.asList("+", "-", "*", "/", "(", ")", "^"));
         HashSet functions = new HashSet<String>(Arrays.asList("sin", "cos", "tg", "ctg"));
         int i = 0;
         while (i < text.length()) {

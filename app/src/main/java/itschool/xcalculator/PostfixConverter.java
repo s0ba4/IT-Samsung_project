@@ -13,6 +13,10 @@ public class PostfixConverter {
     public ArrayList<Token> convert(ArrayList<Token> tokens) {
         Stack<Token> stack = new Stack<>();
         ArrayList<Token> output = new ArrayList<>();
+        // while (i < tokens.size){
+        // Token token = tokens[i]
+        // i++
+        // }
         for (Token token : tokens) {
             if (token.type == NUMBER || token.type == VARIABLE) {
                 output.add(token);
