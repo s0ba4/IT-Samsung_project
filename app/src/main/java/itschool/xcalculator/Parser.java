@@ -1,18 +1,13 @@
-package itschool.smartcalculator;
-
-import android.os.Build;
-
-import androidx.annotation.RequiresApi;
+package itschool.xcalculator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
 
-import static itschool.smartcalculator.Token.TokenType.FUNCTION;
-import static itschool.smartcalculator.Token.TokenType.NUMBER;
-import static itschool.smartcalculator.Token.TokenType.OPERATOR;
-import static itschool.smartcalculator.Token.TokenType.VARIABLE;
+import static itschool.xcalculator.Token.TokenType.FUNCTION;
+import static itschool.xcalculator.Token.TokenType.NUMBER;
+import static itschool.xcalculator.Token.TokenType.OPERATOR;
+import static itschool.xcalculator.Token.TokenType.VARIABLE;
 
 // text to token
 public class Parser {

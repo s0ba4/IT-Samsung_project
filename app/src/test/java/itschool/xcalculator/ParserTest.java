@@ -1,4 +1,4 @@
-package itschool.smartcalculator;
+package itschool.xcalculator;
 
 import org.junit.Test;
 

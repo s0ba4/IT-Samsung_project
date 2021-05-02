@@ -1,4 +1,4 @@
-package itschool.smartcalculator;
+package itschool.xcalculator;
 
 public class Token {
     public final TokenType type;

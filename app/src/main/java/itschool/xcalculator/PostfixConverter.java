@@ -1,16 +1,12 @@
-package itschool.smartcalculator;
-
-import android.icu.util.Output;
-import android.media.VolumeShaper;
+package itschool.xcalculator;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Stack;
 
-import static itschool.smartcalculator.Token.TokenType.FUNCTION;
-import static itschool.smartcalculator.Token.TokenType.NUMBER;
-import static itschool.smartcalculator.Token.TokenType.OPERATOR;
-import static itschool.smartcalculator.Token.TokenType.VARIABLE;
+import static itschool.xcalculator.Token.TokenType.FUNCTION;
+import static itschool.xcalculator.Token.TokenType.NUMBER;
+import static itschool.xcalculator.Token.TokenType.OPERATOR;
+import static itschool.xcalculator.Token.TokenType.VARIABLE;
 
 public class PostfixConverter {
 
