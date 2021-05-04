@@ -98,5 +98,17 @@ public class MainActivity extends AppCompatActivity {
                 binding.input.getText().delete(position - 1, position);
             }
         });
+        binding.equals.setOnClickListener((v) -> {
+            Parser parser = new Parser();
+            PostfixConverter converter = new PostfixConverter();
+            NumericCalculator calculator = new NumericCalculator();
+            try {
+                double result = calculator.calculate(converter.convert(parser.parse(
+                        binding.input.getText().toString())));
+                binding.answer.setText("=" + result);
+            }catch (Exception exception){
+                binding.answer.setText("В выражении ошибка");
+            }
+        });
     }
 }
