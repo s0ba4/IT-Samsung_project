@@ -16,12 +16,16 @@
         <EditText
             android:id="@+id/input"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"></EditText>
+            android:layout_height="wrap_content"
+            android:cursorVisible="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:textIsSelectable="true" />
 
         <TextView
             android:id="@+id/answer"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"></TextView>
+            android:layout_height="wrap_content" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -77,29 +81,29 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/digit1"
+                android:id="@+id/digit7"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
                 android:layout_marginTop="8dp"
-                android:text="1"
+                android:text="7"
                 app:layout_constraintStart_toStartOf="@id/clear"
                 app:layout_constraintTop_toBottomOf="@id/clear" />
 
             <Button
-                android:id="@+id/digit2"
+                android:id="@+id/digit8"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
                 android:layout_marginTop="8dp"
-                android:text="2"
+                android:text="8"
                 app:layout_constraintStart_toStartOf="@id/leftBracket"
                 app:layout_constraintTop_toBottomOf="@id/leftBracket" />
 
             <Button
-                android:id="@+id/digit3"
+                android:id="@+id/digit9"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
                 android:layout_marginTop="8dp"
-                android:text="3"
+                android:text="9"
                 app:layout_constraintStart_toStartOf="@id/rightBracket"
                 app:layout_constraintTop_toBottomOf="@id/rightBracket" />
 
@@ -118,8 +122,8 @@
                 android:layout_height="72dp"
                 android:layout_marginTop="8dp"
                 android:text="4"
-                app:layout_constraintStart_toStartOf="@id/digit1"
-                app:layout_constraintTop_toBottomOf="@id/digit1" />
+                app:layout_constraintStart_toStartOf="@id/digit7"
+                app:layout_constraintTop_toBottomOf="@id/digit7" />
 
             <Button
                 android:id="@+id/digit5"
@@ -127,8 +131,8 @@
                 android:layout_height="72dp"
                 android:layout_marginTop="8dp"
                 android:text="5"
-                app:layout_constraintStart_toStartOf="@id/digit2"
-                app:layout_constraintTop_toBottomOf="@id/digit2" />
+                app:layout_constraintStart_toStartOf="@id/digit8"
+                app:layout_constraintTop_toBottomOf="@id/digit8" />
 
             <Button
                 android:id="@+id/digit6"
@@ -136,8 +140,8 @@
                 android:layout_height="72dp"
                 android:layout_marginTop="8dp"
                 android:text="6"
-                app:layout_constraintStart_toStartOf="@id/digit3"
-                app:layout_constraintTop_toBottomOf="@id/digit3" />
+                app:layout_constraintStart_toStartOf="@id/digit9"
+                app:layout_constraintTop_toBottomOf="@id/digit9" />
 
             <Button
                 android:id="@+id/subtraction"
@@ -149,29 +153,29 @@
                 app:layout_constraintTop_toBottomOf="@id/multiplication" />
 
             <Button
-                android:id="@+id/digit7"
+                android:id="@+id/digit1"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
                 android:layout_marginTop="8dp"
-                android:text="7"
+                android:text="1"
                 app:layout_constraintStart_toStartOf="@id/digit4"
                 app:layout_constraintTop_toBottomOf="@id/digit4" />
 
             <Button
-                android:id="@+id/digit8"
+                android:id="@+id/digit2"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
                 android:layout_marginTop="8dp"
-                android:text="8"
+                android:text="2"
                 app:layout_constraintStart_toStartOf="@id/digit5"
                 app:layout_constraintTop_toBottomOf="@id/digit5" />
 
             <Button
-                android:id="@+id/digit9"
+                android:id="@+id/digit3"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
                 android:layout_marginTop="8dp"
-                android:text="9"
+                android:text="3"
                 app:layout_constraintStart_toStartOf="@id/digit6"
                 app:layout_constraintTop_toBottomOf="@id/digit6" />
 
@@ -190,8 +194,8 @@
                 android:layout_height="72dp"
                 android:layout_marginTop="8dp"
                 android:text="0"
-                app:layout_constraintStart_toStartOf="@id/digit7"
-                app:layout_constraintTop_toBottomOf="@id/digit7" />
+                app:layout_constraintStart_toStartOf="@id/digit1"
+                app:layout_constraintTop_toBottomOf="@id/digit1" />
 
             <Button
                 android:id="@+id/dot"
@@ -199,8 +203,8 @@
                 android:layout_height="72dp"
                 android:layout_marginTop="8dp"
                 android:text="."
-                app:layout_constraintStart_toStartOf="@id/digit8"
-                app:layout_constraintTop_toBottomOf="@id/digit8" />
+                app:layout_constraintStart_toStartOf="@id/digit3"
+                app:layout_constraintTop_toBottomOf="@id/digit3" />
 
             <Button
                 android:id="@+id/equals"
