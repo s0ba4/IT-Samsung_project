@@ -19,79 +19,24 @@ public class MainActivity extends AppCompatActivity {
 
         binding.input.setShowSoftInputOnFocus(false);
 
-
-        binding.digit0.setOnClickListener((v) -> {
-            int position = binding.input.getSelectionStart();
-            binding.input.getText().insert(position, "0");
-        });
-        binding.digit1.setOnClickListener((v) -> {
-            int position = binding.input.getSelectionStart();
-            binding.input.getText().insert(position, "1");
-        });
-        binding.digit2.setOnClickListener((v) -> {
-            int position = binding.input.getSelectionStart();
-            binding.input.getText().insert(position, "2");
-        });
-        binding.digit3.setOnClickListener((v) -> {
-            int position = binding.input.getSelectionStart();
-            binding.input.getText().insert(position, "3");
-        });
-        binding.digit4.setOnClickListener((v) -> {
-            int position = binding.input.getSelectionStart();
-            binding.input.getText().insert(position, "4");
-        });
-        binding.digit5.setOnClickListener((v) -> {
-            int position = binding.input.getSelectionStart();
-            binding.input.getText().insert(position, "5");
-        });
-        binding.digit6.setOnClickListener((v) -> {
-            int position = binding.input.getSelectionStart();
-            binding.input.getText().insert(position, "6");
-        });
-        binding.digit7.setOnClickListener((v) -> {
-            int position = binding.input.getSelectionStart();
-            binding.input.getText().insert(position, "7");
-        });
-        binding.digit8.setOnClickListener((v) -> {
-            int position = binding.input.getSelectionStart();
-            binding.input.getText().insert(position, "8");
-        });
-        binding.digit9.setOnClickListener((v) -> {
-            int position = binding.input.getSelectionStart();
-            binding.input.getText().insert(position, "9");
-        });
-        binding.digit0.setOnClickListener((v) -> {
-            int position = binding.input.getSelectionStart();
-            binding.input.getText().insert(position, "0");
-        });
-        binding.dot.setOnClickListener((v) -> {
-            int position = binding.input.getSelectionStart();
-            binding.input.getText().insert(position, ".");
-        });
-        binding.leftBracket.setOnClickListener((v) -> {
-            int position = binding.input.getSelectionStart();
-            binding.input.getText().insert(position, "(");
-        });
-        binding.rightBracket.setOnClickListener((v) -> {
-            int position = binding.input.getSelectionStart();
-            binding.input.getText().insert(position, ")");
-        });
-        binding.division.setOnClickListener((v) -> {
-            int position = binding.input.getSelectionStart();
-            binding.input.getText().insert(position, "/");
-        });
-        binding.multiplication.setOnClickListener((v) -> {
-            int position = binding.input.getSelectionStart();
-            binding.input.getText().insert(position, "*");
-        });
-        binding.subtraction.setOnClickListener((v) -> {
-            int position = binding.input.getSelectionStart();
-            binding.input.getText().insert(position, "-");
-        });
-        binding.sum.setOnClickListener((v) -> {
-            int position = binding.input.getSelectionStart();
-            binding.input.getText().insert(position, "+");
-        });
+        binding.digit0.setOnClickListener((v) -> insertSymbol("0"));
+        binding.digit1.setOnClickListener((v) -> insertSymbol("1"));
+        binding.digit2.setOnClickListener((v) -> insertSymbol("2"));
+        binding.digit3.setOnClickListener((v) -> insertSymbol("3"));
+        binding.digit4.setOnClickListener((v) -> insertSymbol("4"));
+        binding.digit5.setOnClickListener((v) -> insertSymbol("5"));
+        binding.digit6.setOnClickListener((v) -> insertSymbol("6"));
+        binding.digit7.setOnClickListener((v) -> insertSymbol("7"));
+        binding.digit8.setOnClickListener((v) -> insertSymbol("8"));
+        binding.digit9.setOnClickListener((v) -> insertSymbol("9"));
+        binding.digit0.setOnClickListener((v) -> insertSymbol("0"));
+        binding.dot.setOnClickListener((v) -> insertSymbol("."));
+        binding.leftBracket.setOnClickListener((v) -> insertSymbol("("));
+        binding.rightBracket.setOnClickListener((v) -> insertSymbol(")"));
+        binding.sum.setOnClickListener((v) -> insertSymbol("+"));
+        binding.subtraction.setOnClickListener((v) -> insertSymbol("-"));
+        binding.multiplication.setOnClickListener((v) -> insertSymbol("*"));
+        binding.division.setOnClickListener((v) -> insertSymbol("/"));
         binding.clear.setOnClickListener((v) -> {
             int position = binding.input.getSelectionStart();
             if (position > 0) {
@@ -110,5 +55,9 @@ public class MainActivity extends AppCompatActivity {
                 binding.answer.setText("В выражении ошибка");
             }
         });
+    }
+    private void insertSymbol(String symbol) {
+        int position = binding.input.getSelectionStart();
+        binding.input.getText().insert(position, symbol);
     }
 }
