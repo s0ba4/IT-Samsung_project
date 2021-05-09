@@ -12,6 +12,7 @@
     </style>
 
     <style name="Button.Primary">
+        <item name="android:textColor">@color/white</item>
         <item name="android:fontFamily">@font/roboto_medium</item>
         <item name="android:textAppearance">@style/ButtonTextAppearance</item>
         <item name="android:minHeight">32dp</item>
