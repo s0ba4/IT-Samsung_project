@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         binding.input.setShowSoftInputOnFocus(false);
+        binding.functionContainer.setOnClickListener((v) -> {});
 
         binding.digit0.setOnClickListener((v) -> insertSymbol("0"));
         binding.digit1.setOnClickListener((v) -> insertSymbol("1"));
@@ -58,8 +59,15 @@ public class MainActivity extends AppCompatActivity {
                 binding.answer.setText(String.format("=%s", result));
             } catch (Exception exception) {
                 binding.answer.setText("В выражении ошибка");
+                exception.printStackTrace();
             }
         });
+        binding.sin.setOnClickListener((v) -> insertSymbol("sin("));
+        binding.cos.setOnClickListener((v) -> insertSymbol("cos("));
+        binding.tg.setOnClickListener((v) -> insertSymbol("tg("));
+        binding.ctg.setOnClickListener((v) -> insertSymbol("ctg("));
+        binding.pi.setOnClickListener((v) -> insertSymbol("π"));
+        binding.exp.setOnClickListener((v) -> insertSymbol("e"));
     }
 
     private void insertSymbol(String symbol) {

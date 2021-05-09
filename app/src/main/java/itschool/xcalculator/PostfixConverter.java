@@ -29,6 +29,9 @@ public class PostfixConverter {
                     output.add(stack.pop());
                 }
                 stack.pop();
+                if (!stack.isEmpty() && stack.peek().type==FUNCTION){
+                    output.add(stack.pop());
+                }
             } else if (token.type == OPERATOR) {
                 while (!stack.isEmpty() && (stack.peek().type == FUNCTION || stack.peek().getPriority() >= token.getPriority())) {
                     output.add(stack.pop());

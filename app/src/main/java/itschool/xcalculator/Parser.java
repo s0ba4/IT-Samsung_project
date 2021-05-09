@@ -32,7 +32,12 @@ public class Parser {
             }
             if (currentChar == 'x') {
                 tokens.add(new Token(VARIABLE, String.valueOf(currentChar)));
-            } else if (Character.isAlphabetic(currentChar)) {
+            } else if (currentChar == 'π') {
+                tokens.add(new Token(NUMBER, String.valueOf(Math.PI)));
+
+            } else if(currentChar == 'e') {
+                tokens.add(new Token(NUMBER, String.valueOf(Math.E)));
+            }else if (Character.isAlphabetic(currentChar)) {
                 StringBuilder name = new StringBuilder();
                 while (i < text.length() && (Character.isAlphabetic(text.charAt(i)))) {
                     name.append(text.charAt(i));
