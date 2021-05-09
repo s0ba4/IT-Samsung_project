@@ -41,7 +41,7 @@ public class Parser {
                 if (functions.contains(name.toString())) {
                     tokens.add(new Token(FUNCTION, name.toString()));
                 } else {
-                    throw new IllegalArgumentException("Недопустимый символ: " + name);
+                    throw new IllegalArgumentException(String.format("Недопустимый символ: %s", name));
                 }
                 i--;
             }

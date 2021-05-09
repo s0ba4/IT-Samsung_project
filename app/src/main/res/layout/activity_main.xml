@@ -17,17 +17,31 @@
             android:id="@+id/input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="#00000000"
             android:cursorVisible="true"
             android:focusable="true"
             android:focusableInTouchMode="true"
-            android:textIsSelectable="true" />
+            android:fontFamily="@font/roboto_slab_bold"
+            android:textAlignment="textEnd"
+            android:textColor="@color/white"
+            android:textIsSelectable="true"
+            android:textSize="24sp"
+            tools:text="2+2*2" />
 
         <TextView
             android:id="@+id/answer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/roboto_slab_bold"
             android:paddingBottom="12dp"
-            android:textSize="24sp"/>
+            android:textAlignment="textEnd"
+            android:textColor="@color/white"
+            android:textSize="36sp"
+            tools:text="= 6" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -39,8 +53,10 @@
             android:paddingEnd="16dp"
             android:paddingBottom="16dp">
 
+
             <Button
                 android:id="@+id/clear"
+                style="@style/Button.Primary"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
                 app:layout_constraintEnd_toStartOf="@+id/leftBracket"
@@ -49,12 +65,24 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_backspace_black_32dp"
+                app:layout_constraintBottom_toBottomOf="@id/clear"
+                app:layout_constraintEnd_toEndOf="@id/clear"
+                app:layout_constraintStart_toStartOf="@id/clear"
+                app:layout_constraintTop_toTopOf="@id/clear"
+                app:tint="#26F3CD" />
+
             <Button
                 android:id="@+id/leftBracket"
+                style="@style/Button.Primary"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
                 android:layout_marginStart="8dp"
                 android:text="("
+                android:textColor="#26F3CD"
                 app:layout_constraintEnd_toStartOf="@+id/rightBracket"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/clear"
@@ -62,10 +90,12 @@
 
             <Button
                 android:id="@+id/rightBracket"
+                style="@style/Button.Primary"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
                 android:layout_marginStart="8dp"
                 android:text=")"
+                android:textColor="#26F3CD"
                 app:layout_constraintEnd_toStartOf="@+id/division"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/leftBracket"
@@ -73,10 +103,12 @@
 
             <Button
                 android:id="@+id/division"
+                style="@style/Button.Primary"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
                 android:layout_marginStart="8dp"
                 android:text="÷"
+                android:textColor="#D86061"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/rightBracket"
@@ -84,6 +116,7 @@
 
             <Button
                 android:id="@+id/digit7"
+                style="@style/Button.Primary"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
                 android:layout_marginTop="8dp"
@@ -93,6 +126,7 @@
 
             <Button
                 android:id="@+id/digit8"
+                style="@style/Button.Primary"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
                 android:layout_marginTop="8dp"
@@ -102,24 +136,29 @@
 
             <Button
                 android:id="@+id/digit9"
+                style="@style/Button.Primary"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
                 android:layout_marginTop="8dp"
+                android:fontFamily="@font/roboto_medium"
                 android:text="9"
                 app:layout_constraintStart_toStartOf="@id/rightBracket"
                 app:layout_constraintTop_toBottomOf="@id/rightBracket" />
 
             <Button
                 android:id="@+id/multiplication"
+                style="@style/Button.Primary"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
                 android:layout_marginTop="8dp"
                 android:text="×"
+                android:textColor="#D86061"
                 app:layout_constraintStart_toStartOf="@id/division"
                 app:layout_constraintTop_toBottomOf="@id/division" />
 
             <Button
                 android:id="@+id/digit4"
+                style="@style/Button.Primary"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
                 android:layout_marginTop="8dp"
@@ -129,6 +168,7 @@
 
             <Button
                 android:id="@+id/digit5"
+                style="@style/Button.Primary"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
                 android:layout_marginTop="8dp"
@@ -138,6 +178,7 @@
 
             <Button
                 android:id="@+id/digit6"
+                style="@style/Button.Primary"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
                 android:layout_marginTop="8dp"
@@ -147,15 +188,18 @@
 
             <Button
                 android:id="@+id/subtraction"
+                style="@style/Button.Primary"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
                 android:layout_marginTop="8dp"
                 android:text="-"
+                android:textColor="#D86061"
                 app:layout_constraintStart_toStartOf="@id/multiplication"
                 app:layout_constraintTop_toBottomOf="@id/multiplication" />
 
             <Button
                 android:id="@+id/digit1"
+                style="@style/Button.Primary"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
                 android:layout_marginTop="8dp"
@@ -165,6 +209,7 @@
 
             <Button
                 android:id="@+id/digit2"
+                style="@style/Button.Primary"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
                 android:layout_marginTop="8dp"
@@ -174,6 +219,7 @@
 
             <Button
                 android:id="@+id/digit3"
+                style="@style/Button.Primary"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
                 android:layout_marginTop="8dp"
@@ -183,15 +229,18 @@
 
             <Button
                 android:id="@+id/sum"
+                style="@style/Button.Primary"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
                 android:layout_marginTop="8dp"
                 android:text="+"
+                android:textColor="#D86061"
                 app:layout_constraintStart_toStartOf="@id/subtraction"
                 app:layout_constraintTop_toBottomOf="@id/subtraction" />
 
             <Button
                 android:id="@+id/digit0"
+                style="@style/Button.Primary"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
                 android:layout_marginTop="8dp"
@@ -201,6 +250,7 @@
 
             <Button
                 android:id="@+id/dot"
+                style="@style/Button.Primary"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
                 android:layout_marginTop="8dp"
@@ -210,6 +260,7 @@
 
             <Button
                 android:id="@+id/equals"
+                style="@style/Button.Secondary"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
                 android:layout_marginTop="8dp"

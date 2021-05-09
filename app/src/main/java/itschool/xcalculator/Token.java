@@ -42,11 +42,11 @@ public class Token {
     public String toString() {
         switch (type) {
             case NUMBER:
-                return "NUMBER(" + content + ")";
+                return String.format("NUMBER(%s)", content);
             case OPERATOR:
-                return "OPERATOR(" + content + ")";
+                return String.format("OPERATOR(%s)", content);
             case FUNCTION:
-                return "FUNCTION(" + content + ")";
+                return String.format("FUNCTION(%s)", content);
             case VARIABLE:
                 return "x";
         }

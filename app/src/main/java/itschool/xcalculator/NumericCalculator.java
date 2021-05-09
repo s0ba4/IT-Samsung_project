@@ -2,6 +2,8 @@ package itschool.xcalculator;
 
 import java.util.ArrayList;
 import java.util.Stack;
+import java.util.function.BiFunction;
+import java.util.function.Function;
 
 import static itschool.xcalculator.Token.TokenType.FUNCTION;
 import static itschool.xcalculator.Token.TokenType.NUMBER;
@@ -17,56 +19,47 @@ public class NumericCalculator {
 
             } else if (token.type == OPERATOR) {
                 if (token.content.equals("+")) {
-                    Token number1 = stack.pop();
-                    Token number2 = stack.pop();
-                    double sum = number1.getNumberValue() + number2.getNumberValue();
-                    Token result = new Token(NUMBER, String.valueOf(sum));
-                    stack.push(result);
+                    withTwoNumbers(stack, Double::sum);
                 } else if (token.content.equals("-")) {
-                    Token number1 = stack.pop();
-                    Token number2 = stack.pop();
-                    double sub = number2.getNumberValue() - number1.getNumberValue();
-                    Token result = new Token(NUMBER, String.valueOf(sub));
-                    stack.push(result);
+                    withTwoNumbers(stack, (n1, n2) -> n2 - n1);
                 } else if (token.content.equals("*")) {
-                    Token number1 = stack.pop();
-                    Token number2 = stack.pop();
-                    double mult = number1.getNumberValue() * number2.getNumberValue();
-                    Token result = new Token(NUMBER, String.valueOf(mult));
-                    stack.push(result);
+                    withTwoNumbers(stack, (n1, n2) -> n1 * n2);
                 } else if (token.content.equals("/")) {
-                    Token number1 = stack.pop();
-                    Token number2 = stack.pop();
-                    double div = number2.getNumberValue() / number1.getNumberValue();
-                    Token result = new Token(NUMBER, String.valueOf(div));
-                    stack.push(result);
+                    withTwoNumbers(stack, (n1, n2) -> n2 / n1);
                 } else if (token.content.equals("^")) {
-                    Token number1 = stack.pop();
-                    Token number2 = stack.pop();
-                    double pow = Math.pow(number2.getNumberValue(), number1.getNumberValue());
-                    Token result = new Token(NUMBER, String.valueOf(pow));
-                    stack.push(result);
+                    withTwoNumbers(stack, Math::pow);
                 }
             } else if (token.type == FUNCTION){
                 if (token.content.equals("sin")){
-                    Token number1 = stack.pop();
-                    double sin = Math.sin(number1.getNumberValue());
-                    Token result = new Token(NUMBER, String.valueOf(sin));
-                    stack.push(result);
+                    withOneNumber(stack, Math::sin);
                 }else if (token.content.equals("cos")){
-                    Token number1 = stack.pop();
-                    double cos = Math.cos(number1.getNumberValue());
-                    Token result = new Token(NUMBER, String.valueOf(cos));
-                    stack.push(result);
+                    withOneNumber(stack, Math::cos);
                 }else if (token.content.equals("tg")){
-                    Token number1 = stack.pop();
-                    double tg = Math.tan(number1.getNumberValue());
-                    Token result = new Token(NUMBER, String.valueOf(tg));
-                    stack.push(result);
+                    withOneNumber(stack, Math::tan);
+                }else if (token.content.equals("ctg")){
+                    withOneNumber(stack, (n) -> Math.pow(Math.tan(n), -1));
                 }
             }
         }
         return stack.pop().getNumberValue();
+    }
+    private void withTwoNumbers(
+            Stack<Token> stack,
+            BiFunction<Double, Double, Double> function
+    ) {
+        Token number1 = stack.pop();
+        Token number2 = stack.pop();
+        double result = function.apply(number1.getNumberValue(), number2.getNumberValue());
+        stack.push(new Token(NUMBER, String.valueOf(result)));
+    }
+    private void withOneNumber(
+            Stack<Token> stack,
+            Function<Double, Double> function
+    ) {
+        Token number1 = stack.pop();
+        double value = function.apply(number1.getNumberValue());
+        Token result = new Token(NUMBER, String.valueOf(value));
+        stack.push(result);
     }
 
 }

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Button" parent="Widget.MaterialComponents.Button.UnelevatedButton">
+        <item name="android:minHeight">0dp</item>
+        <item name="textAllCaps">true</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="cornerRadius">16dp</item>
+        <item name="android:textAppearance">@style/ButtonTextAppearance</item>
+        <item name="rippleColor">?attr/colorControlHighlight</item>
+    </style>
+
+    <style name="Button.Primary">
+        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="android:textAppearance">@style/ButtonTextAppearance</item>
+        <item name="android:minHeight">32dp</item>
+        <item name="android:paddingTop">14dp</item>
+        <item name="android:paddingBottom">14dp</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:backgroundTint">#272B33</item>
+    </style>
+
+    <style name="Button.Secondary">
+        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="android:textAppearance">@style/ButtonTextAppearance</item>
+        <item name="android:textColor">#272B33</item>
+        <item name="android:minHeight">32dp</item>
+        <item name="android:paddingTop">14dp</item>
+        <item name="android:paddingBottom">14dp</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:backgroundTint">#D86061</item>
+    </style>
+
+    <style name="ButtonTextAppearance">
+        <item name="android:textSize">30sp</item>
+        <item name="lineHeight">35dp</item>
+        <item name="android:fontFamily">@font/roboto_slab_bold</item>
+        <item name="android:textColor">#ffffff</item>
+    </style>
+
+</resources>
