@@ -3,6 +3,7 @@ package itschool.xcalculator;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.InputType;
 import android.widget.EditText;
 
@@ -10,11 +11,13 @@ import itschool.xcalculator.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
+    TextDecorator decorator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
+        decorator = new TextDecorator();
         setContentView(binding.getRoot());
 
         binding.input.setShowSoftInputOnFocus(false);
@@ -35,8 +38,8 @@ public class MainActivity extends AppCompatActivity {
         binding.rightBracket.setOnClickListener((v) -> insertSymbol(")"));
         binding.sum.setOnClickListener((v) -> insertSymbol("+"));
         binding.subtraction.setOnClickListener((v) -> insertSymbol("-"));
-        binding.multiplication.setOnClickListener((v) -> insertSymbol("*"));
-        binding.division.setOnClickListener((v) -> insertSymbol("/"));
+        binding.multiplication.setOnClickListener((v) -> insertSymbol("×"));
+        binding.division.setOnClickListener((v) -> insertSymbol("÷"));
         binding.clear.setOnClickListener((v) -> {
             int position = binding.input.getSelectionStart();
             if (position > 0) {
@@ -48,16 +51,22 @@ public class MainActivity extends AppCompatActivity {
             PostfixConverter converter = new PostfixConverter();
             NumericCalculator calculator = new NumericCalculator();
             try {
-                double result = calculator.calculate(converter.convert(parser.parse(
-                        binding.input.getText().toString())));
-                binding.answer.setText("=" + result);
-            }catch (Exception exception){
+                String expression = binding.input.getText().toString()
+                        .replace('÷', '/')
+                        .replace('×', '*');
+                double result = calculator.calculate(converter.convert(parser.parse(expression)));
+                binding.answer.setText(String.format("=%s", result));
+            } catch (Exception exception) {
                 binding.answer.setText("В выражении ошибка");
             }
         });
     }
+
     private void insertSymbol(String symbol) {
         int position = binding.input.getSelectionStart();
-        binding.input.getText().insert(position, symbol);
+        Editable editable = binding.input.getText();
+        editable.insert(position, symbol);
+        editable.replace(0, editable.length(), decorator.decorate(editable));
     }
+
 }
