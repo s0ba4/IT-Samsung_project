@@ -1,3 +1,27 @@
 <resources>
     <string name="app_name">X-Calculator</string>
+    <string name="digit0">0</string>
+    <string name="digit1">1</string>
+    <string name="digit2">2</string>
+    <string name="digit3">3</string>
+    <string name="digit4">4</string>
+    <string name="digit5">5</string>
+    <string name="digit6">6</string>
+    <string name="digit7">7</string>
+    <string name="digit8">8</string>
+    <string name="digit9">9</string>
+    <string name="dot">.</string>
+    <string name="leftBracket">(</string>
+    <string name="rightBracket">)</string>
+    <string name="sum">+</string>
+    <string name="subtraction">-</string>
+    <string name="multiplication">×</string>
+    <string name="division">÷</string>
+    <string name="equals">=</string>
+    <string name="sin">sin</string>
+    <string name="cos">cos</string>
+    <string name="tg">tg</string>
+    <string name="ctg">ctg</string>
+    <string name="pi">π</string>
+    <string name="exp">e</string>
 </resources>
