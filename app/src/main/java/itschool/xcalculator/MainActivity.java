@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
-        decorator = new TextDecorator();
+        decorator = new TextDecorator(getApplicationContext());
         setContentView(binding.getRoot());
 
         binding.input.setShowSoftInputOnFocus(false);
@@ -67,8 +67,8 @@ public class MainActivity extends AppCompatActivity {
         binding.cos.setOnClickListener((v) -> insertSymbol("cos("));
         binding.tg.setOnClickListener((v) -> insertSymbol("tg("));
         binding.ctg.setOnClickListener((v) -> insertSymbol("ctg("));
-        binding.pi.setOnClickListener((v) -> insertSymbol("π"));
-        binding.exp.setOnClickListener((v) -> insertSymbol("e"));
+        binding.pi.setOnClickListener((v) -> insertSymbol(((Button) v).getText()));
+        binding.exp.setOnClickListener((v) -> insertSymbol(((Button) v).getText()));
     }
 
     private void insertSymbol(CharSequence symbol) {
