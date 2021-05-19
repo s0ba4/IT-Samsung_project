@@ -12,8 +12,8 @@ public class TextDecorator {
     private final HashSet<Character> pinkChars = new HashSet<>(Arrays.asList('+', '-', '*', '/', '=', '÷', '×'));
     private final HashSet<Character> blueChars = new HashSet<>(Arrays.asList('(', ')'));
 
-    private final long pinkForegroundColor;
-    private final long blueForegroundColor;
+    private final int pinkForegroundColor;
+    private final int blueForegroundColor;
 
     public TextDecorator(Context context) {
         pinkForegroundColor = context.getResources().getColor(R.color.pinkAccent);

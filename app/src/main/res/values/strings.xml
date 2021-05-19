@@ -11,8 +11,8 @@
     <string name="digit8">8</string>
     <string name="digit9">9</string>
     <string name="dot">.</string>
-    <string name="leftBracket">(</string>
-    <string name="rightBracket">)</string>
+    <string name="left_bracket">(</string>
+    <string name="right_bracket">)</string>
     <string name="sum">+</string>
     <string name="subtraction">-</string>
     <string name="multiplication">×</string>
@@ -24,4 +24,5 @@
     <string name="ctg">ctg</string>
     <string name="pi">π</string>
     <string name="exp">e</string>
+    <string name="var_description">Ввод переменной для поиска аналитического решения</string>
 </resources>
