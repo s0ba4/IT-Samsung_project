@@ -1,4 +1,4 @@
-package itschool.xcalculator;
+package itschool.xcalculator.dto;
 
 import java.util.Objects;
 
@@ -53,7 +53,7 @@ public class Token {
         return null;
     }
 
-    enum TokenType {NUMBER, OPERATOR, FUNCTION, VARIABLE}
+    public enum TokenType {NUMBER, OPERATOR, FUNCTION, VARIABLE}
 
     @Override
     public boolean equals(Object o) {

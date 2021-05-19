@@ -7,10 +7,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static itschool.xcalculator.Token.TokenType.FUNCTION;
-import static itschool.xcalculator.Token.TokenType.NUMBER;
-import static itschool.xcalculator.Token.TokenType.OPERATOR;
-import static itschool.xcalculator.Token.TokenType.VARIABLE;
+import itschool.xcalculator.domain.Parser;
+import itschool.xcalculator.dto.Token;
+
+import static itschool.xcalculator.dto.Token.TokenType.FUNCTION;
+import static itschool.xcalculator.dto.Token.TokenType.NUMBER;
+import static itschool.xcalculator.dto.Token.TokenType.OPERATOR;
+import static itschool.xcalculator.dto.Token.TokenType.VARIABLE;
 
 public class ParserTest {
     @Test

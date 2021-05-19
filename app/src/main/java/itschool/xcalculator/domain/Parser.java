@@ -1,13 +1,15 @@
-package itschool.xcalculator;
+package itschool.xcalculator.domain;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 
-import static itschool.xcalculator.Token.TokenType.FUNCTION;
-import static itschool.xcalculator.Token.TokenType.NUMBER;
-import static itschool.xcalculator.Token.TokenType.OPERATOR;
-import static itschool.xcalculator.Token.TokenType.VARIABLE;
+import itschool.xcalculator.dto.Token;
+
+import static itschool.xcalculator.dto.Token.TokenType.FUNCTION;
+import static itschool.xcalculator.dto.Token.TokenType.NUMBER;
+import static itschool.xcalculator.dto.Token.TokenType.OPERATOR;
+import static itschool.xcalculator.dto.Token.TokenType.VARIABLE;
 
 // text to token
 public class Parser {

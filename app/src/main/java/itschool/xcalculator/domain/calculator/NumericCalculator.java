@@ -1,13 +1,15 @@
-package itschool.xcalculator;
+package itschool.xcalculator.domain.calculator;
 
 import java.util.ArrayList;
 import java.util.Stack;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
-import static itschool.xcalculator.Token.TokenType.FUNCTION;
-import static itschool.xcalculator.Token.TokenType.NUMBER;
-import static itschool.xcalculator.Token.TokenType.OPERATOR;
+import itschool.xcalculator.dto.Token;
+
+import static itschool.xcalculator.dto.Token.TokenType.FUNCTION;
+import static itschool.xcalculator.dto.Token.TokenType.NUMBER;
+import static itschool.xcalculator.dto.Token.TokenType.OPERATOR;
 
 public class NumericCalculator {
 

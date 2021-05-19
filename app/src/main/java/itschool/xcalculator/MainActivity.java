@@ -4,11 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.text.Editable;
-import android.text.InputType;
 import android.widget.Button;
-import android.widget.EditText;
 
 import itschool.xcalculator.databinding.ActivityMainBinding;
+import itschool.xcalculator.domain.calculator.NumericCalculator;
+import itschool.xcalculator.domain.Parser;
+import itschool.xcalculator.domain.PostfixConverter;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
@@ -80,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
                         .replace('÷', '/')
                         .replace('×', '*');
                 double result = calculator.calculate(converter.convert(parser.parse(expression)));
-                binding.answer.setText(String.format("=%s", result));
+                binding.answer.setText(String.format("= %s", result));
             } catch (Exception exception) {
                 binding.answer.setText("В выражении ошибка");
                 exception.printStackTrace();
