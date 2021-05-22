@@ -7,6 +7,7 @@ import android.text.Editable;
 import android.widget.Button;
 
 import itschool.xcalculator.databinding.ActivityMainBinding;
+import itschool.xcalculator.domain.calculator.GeneralCalculator;
 import itschool.xcalculator.domain.calculator.NumericCalculator;
 import itschool.xcalculator.domain.Parser;
 import itschool.xcalculator.domain.PostfixConverter;
@@ -14,6 +15,8 @@ import itschool.xcalculator.domain.PostfixConverter;
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
     TextDecorator decorator;
+    GeneralCalculator generalCalculator;
+
 
     private void setupDigitButtons() {
         binding.digit0.setOnClickListener((v) -> insertSymbol(((Button) v).getText()));
@@ -53,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         decorator = new TextDecorator(getApplicationContext());
+        generalCalculator = new GeneralCalculator();
         setContentView(binding.getRoot());
 
         binding.input.setShowSoftInputOnFocus(false);
@@ -73,14 +77,11 @@ public class MainActivity extends AppCompatActivity {
             return false;
         });
         binding.equals.setOnClickListener((v) -> {
-            Parser parser = new Parser();
-            PostfixConverter converter = new PostfixConverter();
-            NumericCalculator calculator = new NumericCalculator();
             try {
                 String expression = binding.input.getText().toString()
                         .replace('÷', '/')
                         .replace('×', '*');
-                double result = calculator.calculate(converter.convert(parser.parse(expression)));
+                String result = generalCalculator.calculate(expression);
                 binding.answer.setText(String.format("= %s", result));
             } catch (Exception exception) {
                 binding.answer.setText("В выражении ошибка");
