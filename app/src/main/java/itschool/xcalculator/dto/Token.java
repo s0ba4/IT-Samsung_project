@@ -2,7 +2,9 @@ package itschool.xcalculator.dto;
 
 import java.util.Objects;
 
-public class Token {
+import itschool.xcalculator.domain.Node;
+
+public class Token implements Node {
     public final TokenType type;
     public final String content;
 

@@ -6,7 +6,9 @@ import java.util.Arrays;
 import java.util.Objects;
 import java.util.function.BiFunction;
 
-public class Polynomial {
+import itschool.xcalculator.domain.Node;
+
+public class Polynomial implements Node {
     private final double[] coeffs;
 
     public Polynomial(double... coeffs) {
@@ -18,6 +20,19 @@ public class Polynomial {
         for (int i = 0; i < coeffs.length; i++) doubles[i] = coeffs[i];
         this.coeffs = doubles;
     }
+
+    /**
+     * <h1>Сложение полиномов</h1>
+     *
+     * <h2>Пример</h2>
+     * <code>
+     *     Polynomial p1 = new Polynomial(1, 2); // 1 + 2x<br>
+     *     Polynomial p2 = new Polynomial(1, 4, 6, 9); // 1 + 4x + 6x^2 + 9x^3<br>
+     *     p1.plus(p2) // 2 + 6x + 6x^2 + 9x^3<br>
+     * </code>
+     * @param other
+     * @return
+     */
 
     public Polynomial plus(Polynomial other) {
         return (other.coeffs.length > coeffs.length)
