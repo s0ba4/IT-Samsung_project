@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         binding.ctg.setOnClickListener((v) -> insertSymbol("ctg("));
         binding.pi.setOnClickListener((v) -> insertSymbol(((Button) v).getText()));
         binding.exp.setOnClickListener((v) -> insertSymbol(((Button) v).getText()));
-        binding.var.setOnClickListener((v) -> insertSymbol(((Button) v).getText()));
+        binding.var.setOnClickListener((v) -> insertSymbol("x"));
         binding.power.setOnClickListener((v) -> insertSymbol(((Button) v).getText()));
     }
 

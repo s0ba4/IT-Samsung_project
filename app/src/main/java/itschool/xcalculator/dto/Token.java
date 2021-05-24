@@ -4,7 +4,7 @@ import java.util.Objects;
 
 import itschool.xcalculator.domain.Node;
 
-public class Token implements Node {
+public class Token {
     public final TokenType type;
     public final String content;
 

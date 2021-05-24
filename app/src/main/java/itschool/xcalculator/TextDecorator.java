@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 
 public class TextDecorator {
-    private final HashSet<Character> pinkChars = new HashSet<>(Arrays.asList('+', '-', '*', '/', '=', '÷', '×'));
+    private final HashSet<Character> pinkChars = new HashSet<>(Arrays.asList('+', '-', '*', '/', '=', '÷', '×', '^'));
     private final HashSet<Character> blueChars = new HashSet<>(Arrays.asList('(', ')'));
 
     private final int pinkForegroundColor;

@@ -8,7 +8,7 @@ import java.util.function.BiFunction;
 
 import itschool.xcalculator.domain.Node;
 
-public class Polynomial implements Node {
+public class Polynomial {
     private final double[] coeffs;
 
     public Polynomial(double... coeffs) {
@@ -27,9 +27,9 @@ public class Polynomial implements Node {
      * <h2>Пример</h2>
      *
      * <code>
-     *     Polynomial p1 = new Polynomial(1, 2); // 1 + 2x<br>
-     *     Polynomial p2 = new Polynomial(1, 4, 6, 9); // 1 + 4x + 6x^2 + 9x^3<br>
-     *     p1.plus(p2) // 2 + 6x + 6x^2 + 9x^3<br>
+     * Polynomial p1 = new Polynomial(1, 2); // 1 + 2x<br>
+     * Polynomial p2 = new Polynomial(1, 4, 6, 9); // 1 + 4x + 6x^2 + 9x^3<br>
+     * p1.plus(p2) // 2 + 6x + 6x^2 + 9x^3<br>
      * </code>
      *
      * @param other полином, который нужно вычесть из текущего
@@ -48,9 +48,9 @@ public class Polynomial implements Node {
      * <h2>Пример</h2>
      *
      * <code>
-     *     Polynomial p1 = new Polynomial(1, 2); // 1 + 2x<br>
-     *     Polynomial p2 = new Polynomial(1, 4, 6, 9); // 1 + 4x + 6x^2 + 9x^3<br>
-     *     p1.minus(p2) // -2x - 6x^2 - 9x^3<br>
+     * Polynomial p1 = new Polynomial(1, 2); // 1 + 2x<br>
+     * Polynomial p2 = new Polynomial(1, 4, 6, 9); // 1 + 4x + 6x^2 + 9x^3<br>
+     * p1.minus(p2) // -2x - 6x^2 - 9x^3<br>
      * </code>
      *
      * @param other полином, который нужно прибавить к текущему
@@ -69,9 +69,9 @@ public class Polynomial implements Node {
      * <h2>Пример</h2>
      *
      * <code>
-     *     Polynomial p1 = new Polynomial(1, 2); // 1 + 2x<br>
-     *     Polynomial p2 = new Polynomial(0, 1, 1); // x + x^2<br>
-     *     p1.multiply(p2) // x + 3x^2 + 2x^3<br>
+     * Polynomial p1 = new Polynomial(1, 2); // 1 + 2x<br>
+     * Polynomial p2 = new Polynomial(0, 1, 1); // x + x^2<br>
+     * p1.multiply(p2) // x + 3x^2 + 2x^3<br>
      * </code>
      *
      * @param other полином, на который нужно умножить текущий полином
@@ -95,7 +95,7 @@ public class Polynomial implements Node {
 
     /**
      * <h1>Порядок полинома</h1>
-     *
+     * <p>
      * Возвращает порядок полинома.
      *
      * <h2>Пример</h2>
@@ -131,19 +131,26 @@ public class Polynomial implements Node {
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < coeffs.length; i++) {
-            final double coeff = coeffs[i];
+        for (int i = 0; i <= getOrder(); i++) {
+            final double coeff = coefficientAt(i);
             if (coeff == 0.0) continue;
-            if (coeff > 0) builder.append('+');
+            if (coeff >= 0.0) builder.append('+');
+            if (coeff == -1.0 && i > 0) builder.append('-');
             if (i == 0) {
-                builder.append(coeff);
+                builder.append(toStringCoefficient(coeff));
             } else if (i == 1) {
-                builder.append(coeff).append('x');
-            } else {
-                builder.append(coeff).append("x^").append(i);
+                if (coeff != 1.0 && coeff != -1.0) builder.append(toStringCoefficient(coeff));
+                builder.append("x^").append(i);
             }
         }
-        return String.format("P(%s)", builder.toString());
+        if (builder.charAt(0) == 'x') {
+            builder.deleteCharAt(0);
+        }
+        return builder.toString();
+    }
+
+    private String toStringCoefficient(double coeff) {
+        return String.valueOf(coeff).replaceFirst("\\.0$", "");
     }
 
 
@@ -158,5 +165,9 @@ public class Polynomial implements Node {
     @Override
     public int hashCode() {
         return Arrays.hashCode(coeffs);
+    }
+
+    public double coefficientAt(int index) {
+        return (getOrder() >= index) ? coeffs[index] : 0;
     }
 }

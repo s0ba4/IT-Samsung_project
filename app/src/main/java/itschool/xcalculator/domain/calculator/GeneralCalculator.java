@@ -23,9 +23,8 @@ public class GeneralCalculator {
         ArrayList<Token> tokens = converter.convert(parser.parse(expression));
         boolean isHasVariable = tokens.stream().anyMatch(token -> token.type == VARIABLE);
         if (isHasVariable) {
-            List<Node> nodes = variableCalculator.calculate(tokens);
-            String result = render.render(nodes);
-            return result;
+            Node node = variableCalculator.calculate(tokens);
+            return render.render(node);
         } else {
             double result = numericCalculator.calculate(tokens);
             return String.valueOf(result);
