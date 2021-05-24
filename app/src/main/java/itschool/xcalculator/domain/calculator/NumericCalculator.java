@@ -29,22 +29,23 @@ public class NumericCalculator {
                 } else if (token.content.equals("/")) {
                     withTwoNumbers(stack, (n1, n2) -> n2 / n1);
                 } else if (token.content.equals("^")) {
-                    withTwoNumbers(stack, Math::pow);
+                    withTwoNumbers(stack, (n1, n2) -> Math.pow(n2, n1));
                 }
-            } else if (token.type == FUNCTION){
-                if (token.content.equals("sin")){
+            } else if (token.type == FUNCTION) {
+                if (token.content.equals("sin")) {
                     withOneNumber(stack, Math::sin);
-                }else if (token.content.equals("cos")){
+                } else if (token.content.equals("cos")) {
                     withOneNumber(stack, Math::cos);
-                }else if (token.content.equals("tg")){
+                } else if (token.content.equals("tg")) {
                     withOneNumber(stack, Math::tan);
-                }else if (token.content.equals("ctg")){
+                } else if (token.content.equals("ctg")) {
                     withOneNumber(stack, (n) -> Math.pow(Math.tan(n), -1));
                 }
             }
         }
         return stack.pop().getNumberValue();
     }
+
     private void withTwoNumbers(
             Stack<Token> stack,
             BiFunction<Double, Double, Double> function
@@ -54,6 +55,7 @@ public class NumericCalculator {
         double result = function.apply(number1.getNumberValue(), number2.getNumberValue());
         stack.push(new Token(NUMBER, String.valueOf(result)));
     }
+
     private void withOneNumber(
             Stack<Token> stack,
             Function<Double, Double> function

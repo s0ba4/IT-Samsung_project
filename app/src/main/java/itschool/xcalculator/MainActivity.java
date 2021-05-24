@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         binding.pi.setOnClickListener((v) -> insertSymbol(((Button) v).getText()));
         binding.exp.setOnClickListener((v) -> insertSymbol(((Button) v).getText()));
         binding.var.setOnClickListener((v) -> insertSymbol(((Button) v).getText()));
+        binding.power.setOnClickListener((v) -> insertSymbol(((Button) v).getText()));
     }
 
     @Override

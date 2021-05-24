@@ -25,13 +25,15 @@ public class Polynomial implements Node {
      * <h1>Сложение полиномов</h1>
      *
      * <h2>Пример</h2>
+     *
      * <code>
      *     Polynomial p1 = new Polynomial(1, 2); // 1 + 2x<br>
      *     Polynomial p2 = new Polynomial(1, 4, 6, 9); // 1 + 4x + 6x^2 + 9x^3<br>
      *     p1.plus(p2) // 2 + 6x + 6x^2 + 9x^3<br>
      * </code>
-     * @param other
-     * @return
+     *
+     * @param other полином, который нужно вычесть из текущего
+     * @return сумма полиномов - новый полином
      */
 
     public Polynomial plus(Polynomial other) {
@@ -40,11 +42,41 @@ public class Polynomial implements Node {
                 : doOperation(other.coeffs, coeffs, Double::sum);
     }
 
+    /**
+     * <h1>Вычитание полиномов</h1>
+     *
+     * <h2>Пример</h2>
+     *
+     * <code>
+     *     Polynomial p1 = new Polynomial(1, 2); // 1 + 2x<br>
+     *     Polynomial p2 = new Polynomial(1, 4, 6, 9); // 1 + 4x + 6x^2 + 9x^3<br>
+     *     p1.minus(p2) // -2x - 6x^2 - 9x^3<br>
+     * </code>
+     *
+     * @param other полином, который нужно прибавить к текущему
+     * @return разность полиномов - новый полином
+     */
+
     public Polynomial minus(Polynomial other) {
         return (other.coeffs.length > coeffs.length)
-                ? doOperation(coeffs, other.coeffs, (a, b) -> a - b)
-                : doOperation(other.coeffs, coeffs, (a, b) -> a - b);
+                ? doOperation(coeffs, other.coeffs, (a, b) -> b - a)
+                : doOperation(other.coeffs, coeffs, (a, b) -> b - a);
     }
+
+    /**
+     * <h1>Умножение полинома на полином</h1>
+     *
+     * <h2>Пример</h2>
+     *
+     * <code>
+     *     Polynomial p1 = new Polynomial(1, 2); // 1 + 2x<br>
+     *     Polynomial p2 = new Polynomial(0, 1, 1); // x + x^2<br>
+     *     p1.multiply(p2) // x + 3x^2 + 2x^3<br>
+     * </code>
+     *
+     * @param other полином, на который нужно умножить текущий полином
+     * @return произведение полиномов - новый полином
+     */
 
     public Polynomial multiply(Polynomial other) {
         Polynomial polynomial = null;
@@ -60,6 +92,21 @@ public class Polynomial implements Node {
         }
         return Objects.requireNonNull(polynomial);
     }
+
+    /**
+     * <h1>Порядок полинома</h1>
+     *
+     * Возвращает порядок полинома.
+     *
+     * <h2>Пример</h2>
+     *
+     * <code>
+     * // вернет 3, потому что x + 2x+ x^2 + x^3<br>
+     * new Polynomial(0, 2, 1, 1).getOrder() <br>
+     * </code>
+     *
+     * @return порядок полинома (число от 0 до Integer.MAX_VALUE)
+     */
 
     public int getOrder() {
         return coeffs.length - 1;
