@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                         .replace('÷', '/')
                         .replace('×', '*');
                 String result = generalCalculator.calculate(expression);
-                binding.answer.setText(String.format("= %s", result));
+                binding.answer.setText(decorator.decorate(String.format("= %s", result)));
             } catch (Exception exception) {
                 binding.answer.setText("В выражении ошибка");
                 exception.printStackTrace();

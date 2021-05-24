@@ -6,8 +6,6 @@ import java.util.Arrays;
 import java.util.Objects;
 import java.util.function.BiFunction;
 
-import itschool.xcalculator.domain.Node;
-
 public class Polynomial {
     private final double[] coeffs;
 
@@ -140,10 +138,13 @@ public class Polynomial {
                 builder.append(toStringCoefficient(coeff));
             } else if (i == 1) {
                 if (coeff != 1.0 && coeff != -1.0) builder.append(toStringCoefficient(coeff));
+                builder.append("x");
+            } else {
+                if (coeff != 1.0 && coeff != -1.0) builder.append(toStringCoefficient(coeff));
                 builder.append("x^").append(i);
             }
         }
-        if (builder.charAt(0) == 'x') {
+        if (builder.charAt(0) == '+') {
             builder.deleteCharAt(0);
         }
         return builder.toString();

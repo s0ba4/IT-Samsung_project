@@ -1,9 +1,8 @@
 package itschool.xcalculator.domain.calculator;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import itschool.xcalculator.domain.Node;
+import itschool.xcalculator.dto.Node;
 import itschool.xcalculator.domain.Parser;
 import itschool.xcalculator.domain.PostfixConverter;
 import itschool.xcalculator.domain.Renderer;

@@ -1,12 +1,11 @@
 package itschool.xcalculator.domain.calculator;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
-import itschool.xcalculator.domain.Node;
+import itschool.xcalculator.dto.Node;
 import itschool.xcalculator.dto.Polynomial;
 import itschool.xcalculator.dto.Token;
 

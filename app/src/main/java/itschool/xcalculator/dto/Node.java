@@ -1,7 +1,4 @@
-package itschool.xcalculator.domain;
-
-import itschool.xcalculator.dto.Polynomial;
-import itschool.xcalculator.dto.Token;
+package itschool.xcalculator.dto;
 
 import static itschool.xcalculator.dto.Token.TokenType.FUNCTION;
 import static itschool.xcalculator.dto.Token.TokenType.OPERATOR;
