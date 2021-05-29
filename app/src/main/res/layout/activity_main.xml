@@ -289,7 +289,7 @@
         <View
             android:layout_width="40dp"
             android:layout_height="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="12dp"
             android:background="@drawable/background_rounded_corners"
             android:backgroundTint="#66FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
@@ -301,7 +301,7 @@
             style="@style/Button.Primary"
             android:layout_width="72dp"
             android:layout_height="72dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="32dp"
             android:fontFamily="@font/roboto_slab"
             android:text="@string/sin"
             android:textSize="20sp"
