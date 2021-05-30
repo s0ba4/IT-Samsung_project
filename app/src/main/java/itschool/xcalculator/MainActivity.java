@@ -2,6 +2,8 @@ package itschool.xcalculator;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.widget.Button;
@@ -11,46 +13,13 @@ import itschool.xcalculator.domain.calculator.GeneralCalculator;
 import itschool.xcalculator.domain.calculator.NumericCalculator;
 import itschool.xcalculator.domain.Parser;
 import itschool.xcalculator.domain.PostfixConverter;
+import itschool.xcalculator.dto.TrigonometricMode;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
     TextDecorator decorator;
     GeneralCalculator generalCalculator;
-
-
-    private void setupDigitButtons() {
-        binding.digit0.setOnClickListener((v) -> insertSymbol(((Button) v).getText()));
-        binding.digit1.setOnClickListener((v) -> insertSymbol(((Button) v).getText()));
-        binding.digit2.setOnClickListener((v) -> insertSymbol(((Button) v).getText()));
-        binding.digit3.setOnClickListener((v) -> insertSymbol(((Button) v).getText()));
-        binding.digit4.setOnClickListener((v) -> insertSymbol(((Button) v).getText()));
-        binding.digit5.setOnClickListener((v) -> insertSymbol(((Button) v).getText()));
-        binding.digit6.setOnClickListener((v) -> insertSymbol(((Button) v).getText()));
-        binding.digit7.setOnClickListener((v) -> insertSymbol(((Button) v).getText()));
-        binding.digit8.setOnClickListener((v) -> insertSymbol(((Button) v).getText()));
-        binding.digit9.setOnClickListener((v) -> insertSymbol(((Button) v).getText()));
-        binding.dot.setOnClickListener((v) -> insertSymbol(((Button) v).getText()));
-    }
-
-    private void setupOperatorsButtons() {
-        binding.leftBracket.setOnClickListener((v) -> insertSymbol(((Button) v).getText()));
-        binding.rightBracket.setOnClickListener((v) -> insertSymbol(((Button) v).getText()));
-        binding.sum.setOnClickListener((v) -> insertSymbol(((Button) v).getText()));
-        binding.subtraction.setOnClickListener((v) -> insertSymbol(((Button) v).getText()));
-        binding.multiplication.setOnClickListener((v) -> insertSymbol(((Button) v).getText()));
-        binding.division.setOnClickListener((v) -> insertSymbol(((Button) v).getText()));
-    }
-
-    private void setupFunctionButtons() {
-        binding.sin.setOnClickListener((v) -> insertSymbol("sin("));
-        binding.cos.setOnClickListener((v) -> insertSymbol("cos("));
-        binding.tg.setOnClickListener((v) -> insertSymbol("tg("));
-        binding.ctg.setOnClickListener((v) -> insertSymbol("ctg("));
-        binding.pi.setOnClickListener((v) -> insertSymbol(((Button) v).getText()));
-        binding.exp.setOnClickListener((v) -> insertSymbol(((Button) v).getText()));
-        binding.var.setOnClickListener((v) -> insertSymbol("x"));
-        binding.power.setOnClickListener((v) -> insertSymbol(((Button) v).getText()));
-    }
+    TrigonometricMode mode = TrigonometricMode.DEGREES;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,7 +58,63 @@ public class MainActivity extends AppCompatActivity {
                 exception.printStackTrace();
             }
         });
+        renderButtons();
+    }
 
+    private void setupDigitButtons() {
+        binding.digit0.setOnClickListener((v) -> insertSymbol(((Button) v).getText()));
+        binding.digit1.setOnClickListener((v) -> insertSymbol(((Button) v).getText()));
+        binding.digit2.setOnClickListener((v) -> insertSymbol(((Button) v).getText()));
+        binding.digit3.setOnClickListener((v) -> insertSymbol(((Button) v).getText()));
+        binding.digit4.setOnClickListener((v) -> insertSymbol(((Button) v).getText()));
+        binding.digit5.setOnClickListener((v) -> insertSymbol(((Button) v).getText()));
+        binding.digit6.setOnClickListener((v) -> insertSymbol(((Button) v).getText()));
+        binding.digit7.setOnClickListener((v) -> insertSymbol(((Button) v).getText()));
+        binding.digit8.setOnClickListener((v) -> insertSymbol(((Button) v).getText()));
+        binding.digit9.setOnClickListener((v) -> insertSymbol(((Button) v).getText()));
+        binding.dot.setOnClickListener((v) -> insertSymbol(((Button) v).getText()));
+    }
+
+    private void setupOperatorsButtons() {
+        binding.leftBracket.setOnClickListener((v) -> insertSymbol(((Button) v).getText()));
+        binding.rightBracket.setOnClickListener((v) -> insertSymbol(((Button) v).getText()));
+        binding.sum.setOnClickListener((v) -> insertSymbol(((Button) v).getText()));
+        binding.subtraction.setOnClickListener((v) -> insertSymbol(((Button) v).getText()));
+        binding.multiplication.setOnClickListener((v) -> insertSymbol(((Button) v).getText()));
+        binding.division.setOnClickListener((v) -> insertSymbol(((Button) v).getText()));
+    }
+
+    private void setupFunctionButtons() {
+        binding.sin.setOnClickListener((v) -> insertSymbol("sin("));
+        binding.cos.setOnClickListener((v) -> insertSymbol("cos("));
+        binding.tg.setOnClickListener((v) -> insertSymbol("tg("));
+        binding.rad.setOnClickListener((v) -> {
+            mode = TrigonometricMode.RADIANS;
+            renderButtons();
+        });
+        binding.deg.setOnClickListener((v) -> {
+            mode = TrigonometricMode.DEGREES;
+            renderButtons();
+        });
+        // binding.ctg.setOnClickListener((v) -> insertSymbol("ctg("));
+        binding.pi.setOnClickListener((v) -> insertSymbol(((Button) v).getText()));
+        binding.exp.setOnClickListener((v) -> insertSymbol(((Button) v).getText()));
+        binding.var.setOnClickListener((v) -> insertSymbol("x"));
+        binding.power.setOnClickListener((v) -> insertSymbol(((Button) v).getText()));
+    }
+
+    private void renderButtons() {
+        if (mode == TrigonometricMode.RADIANS) {
+            binding.rad.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.blueAccent)));
+            binding.rad.setTextColor(getResources().getColor(R.color.backgroundDark));
+            binding.deg.setBackgroundTintList(null);
+            binding.deg.setTextColor(Color.WHITE);
+        } else {
+            binding.deg.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.blueAccent)));
+            binding.deg.setTextColor(getResources().getColor(R.color.backgroundDark));
+            binding.rad.setBackgroundTintList(null);
+            binding.rad.setTextColor(Color.WHITE);
+        }
     }
 
     private void insertSymbol(CharSequence symbol) {

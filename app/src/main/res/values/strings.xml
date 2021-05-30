@@ -26,5 +26,7 @@
     <string name="exp">e</string>
     <string name="power">^</string>
     <string name="x">x</string>
+    <string name="rad">RAD</string>
+    <string name="deg">DEG</string>
     <string name="var_description">Ввод переменной для поиска аналитического решения</string>
 </resources>

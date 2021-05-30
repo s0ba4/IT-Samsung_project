@@ -335,26 +335,28 @@
             android:fontFamily="@font/roboto_slab"
             android:text="@string/tg"
             android:textSize="20sp"
-            app:layout_constraintEnd_toStartOf="@+id/ctg"
+            app:layout_constraintEnd_toStartOf="@+id/power"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toEndOf="@id/cos"
             app:layout_constraintTop_toTopOf="@id/sin" />
 
-        <Button
-            android:id="@+id/ctg"
-            style="@style/Button.Primary"
-            android:layout_width="72dp"
-            android:layout_height="72dp"
-            android:layout_marginStart="8dp"
-            android:fontFamily="@font/roboto_slab"
-            android:text="@string/ctg"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toEndOf="@id/tg"
-            app:layout_constraintTop_toTopOf="@id/sin" />
+        <!--        <Button
+                    android:id="@+id/ctg"
+                    style="@style/Button.Primary"
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="@font/roboto_slab"
+                    android:text="@string/ctg"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toEndOf="@id/tg"
+                    app:layout_constraintTop_toTopOf="@id/sin"/>
+                    -->
+
 
         <Button
             android:id="@+id/pi"
@@ -379,15 +381,42 @@
             app:layout_constraintTop_toBottomOf="@id/cos" />
 
         <Button
+            android:id="@+id/rad"
+            style="@style/Button.Primary"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/roboto_slab"
+            android:text="@string/rad"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@id/exp"
+            app:layout_constraintTop_toTopOf="@id/exp" />
+
+        <Button
+            android:id="@+id/deg"
+            style="@style/Button.Primary"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/roboto_slab"
+            android:text="@string/deg"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@id/rad"
+            app:layout_constraintTop_toTopOf="@id/rad" />
+
+        <Button
             android:id="@+id/power"
             style="@style/Button.Primary"
             android:layout_width="72dp"
             android:layout_height="72dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
             android:text="@string/power"
             android:textColor="@color/pinkAccent"
-            app:layout_constraintStart_toStartOf="@id/tg"
-            app:layout_constraintTop_toBottomOf="@id/tg" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@id/tg"
+            app:layout_constraintTop_toTopOf="@id/sin" />
 
         <Button
             android:id="@+id/var"
