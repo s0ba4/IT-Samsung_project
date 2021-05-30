@@ -129,7 +129,7 @@ public class Polynomial {
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        for (int i = 0; i <= getOrder(); i++) {
+        for (int i = getOrder(); i >= 0; i--) {
             final double coeff = coefficientAt(i);
             if (coeff == 0.0) continue;
             if (coeff >= 0.0) builder.append('+');
