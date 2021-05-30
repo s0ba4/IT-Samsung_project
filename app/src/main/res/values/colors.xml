@@ -13,4 +13,5 @@
     <color name="blueAccent">#26F3CD</color>
     <color name="pinkAccent">#D86061</color>
     <color name="transparent">#00000000</color>
+    <color name="primaryButtonBackground">#272B33</color>
 </resources>

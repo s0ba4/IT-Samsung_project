@@ -51,7 +51,9 @@ public class MainActivity extends AppCompatActivity {
                 String expression = binding.input.getText().toString()
                         .replace('÷', '/')
                         .replace('×', '*');
-                String result = generalCalculator.calculate(expression);
+                String result = generalCalculator.calculate(expression, mode)
+                        .replace('/', '÷')
+                        .replace('*', '×');
                 binding.answer.setText(decorator.decorate(String.format("= %s", result)));
             } catch (Exception exception) {
                 binding.answer.setText("В выражении ошибка");
@@ -107,12 +109,12 @@ public class MainActivity extends AppCompatActivity {
         if (mode == TrigonometricMode.RADIANS) {
             binding.rad.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.blueAccent)));
             binding.rad.setTextColor(getResources().getColor(R.color.backgroundDark));
-            binding.deg.setBackgroundTintList(null);
+            binding.deg.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.primaryButtonBackground)));
             binding.deg.setTextColor(Color.WHITE);
         } else {
             binding.deg.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.blueAccent)));
             binding.deg.setTextColor(getResources().getColor(R.color.backgroundDark));
-            binding.rad.setBackgroundTintList(null);
+            binding.rad.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.primaryButtonBackground)));
             binding.rad.setTextColor(Color.WHITE);
         }
     }

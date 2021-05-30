@@ -8,6 +8,7 @@ import java.util.function.Function;
 import itschool.xcalculator.dto.Node;
 import itschool.xcalculator.dto.Polynomial;
 import itschool.xcalculator.dto.Token;
+import itschool.xcalculator.dto.TrigonometricMode;
 
 import static itschool.xcalculator.dto.Token.TokenType.FUNCTION;
 import static itschool.xcalculator.dto.Token.TokenType.NUMBER;
@@ -15,7 +16,8 @@ import static itschool.xcalculator.dto.Token.TokenType.OPERATOR;
 import static itschool.xcalculator.dto.Token.TokenType.VARIABLE;
 
 public class VariableCalculator {
-    public Node calculate(List<Token> tokens) {
+
+    public Node calculate(List<Token> tokens, TrigonometricMode mode) {
         Stack<Node> stack = new Stack<>();
         for (Token token : tokens) {
             if (token.type == NUMBER) {
@@ -28,16 +30,16 @@ public class VariableCalculator {
                 if (node.isPolynomial() && node.getPolynomial().getOrder() == 0) {
                     switch (token.content) {
                         case "sin":
-                            withOneNumber(stack, Math::sin);
+                            withOneNumber(stack, mode, Math::sin);
                             break;
                         case "cos":
-                            withOneNumber(stack, Math::cos);
+                            withOneNumber(stack, mode, Math::cos);
                             break;
                         case "tg":
-                            withOneNumber(stack, Math::tan);
+                            withOneNumber(stack, mode, Math::tan);
                             break;
                         case "ctg":
-                            withOneNumber(stack, (n) -> Math.pow(Math.tan(n), -1));
+                            withOneNumber(stack, mode, (n) -> Math.pow(Math.tan(n), -1));
                             break;
                     }
                     // если в полиноме есть x, то создаём ветку дерева
@@ -59,7 +61,14 @@ public class VariableCalculator {
                     case "/":
                         Node left = stack.pop();
                         Node right = stack.pop();
-                        stack.push(new Node(token, left, right));
+                        if (right.isPolynomial() && right.getPolynomial().getOrder() == 0
+                                && left.isPolynomial() && left.getPolynomial().getOrder() == 0) {
+                            double value = right.getPolynomial().coefficientAt(0)
+                                    / left.getPolynomial().coefficientAt(0);
+                            stack.push(new Node(new Polynomial(value)));
+                        } else {
+                            stack.push(new Node(token, right, left));
+                        }
                         break;
                     case "^":
                         withTwoNumbers(stack, token, (p1, p2) -> {
@@ -88,10 +97,14 @@ public class VariableCalculator {
 
     private void withOneNumber(
             Stack<Node> stack,
+            TrigonometricMode mode,
             Function<Double, Double> function
     ) {
         Node number1 = stack.pop();
-        Double value = function.apply(number1.getPolynomial().coefficientAt(0));
+        Double numericValue = (mode == TrigonometricMode.RADIANS)
+                ? number1.getPolynomial().coefficientAt(0)
+                : Math.toRadians(number1.getPolynomial().coefficientAt(0));
+        Double value = function.apply(numericValue);
         Node result = new Node(new Polynomial(value));
         stack.push(result);
     }
