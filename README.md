@@ -1,6 +1,6 @@
 # X-Calculator
 
-<img src="https://sun9-76.userapi.com/impg/P1zn6tPazK9VKyxVDRHlv0Py5nzOcARQyWBUtg/C6LuhuDr75c.jpg?size=720x960&quality=96&sign=d80e2280b8b59c88c0aff6ecfab61386&type=album" style="zoom:33%;" /> 
+![](https://github.com/s0ba4/IT-Samsung_project/raw/master/screenshots/1.png)
 
 
 
