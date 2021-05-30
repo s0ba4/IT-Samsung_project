@@ -24,6 +24,12 @@ public class Parser {
             char currentChar = text.charAt(i);
             if (operators.contains(currentChar)) {
                 tokens.add(new Token(OPERATOR, String.valueOf(currentChar)));
+                // возможность опустить знак умножения между скобками
+                if (i + 1 < text.length() && text.charAt(i + 1) == '(' && currentChar == ')') {
+                    tokens.add(new Token(OPERATOR, "*"));
+                    tokens.add(new Token(OPERATOR, "("));
+                    i++;
+                }
             } else if (Character.isDigit(currentChar)) {
                 StringBuilder number = new StringBuilder();
                 while (i < text.length() && (Character.isDigit(text.charAt(i)) || text.charAt(i) == '.')) {
@@ -35,6 +41,10 @@ public class Parser {
                 if (i < text.length() && text.charAt(i) == 'x') {
                     tokens.add(new Token(OPERATOR, "*"));
                     tokens.add(new Token(VARIABLE, "x"));
+                    i++;
+                } else if (i < text.length() && text.charAt(i) == '(') {
+                    tokens.add(new Token(OPERATOR, "*"));
+                    tokens.add(new Token(OPERATOR, "("));
                     i++;
                 }
                 i--;

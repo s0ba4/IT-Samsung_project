@@ -37,5 +37,42 @@ public class ParserTest {
         Assertions.assertEquals(rightAnswer, parserAnswer);
 
     }
-
+    @Test
+    public void test2() {
+        Parser parser = new Parser();
+        ArrayList<Token> parserAnswer = parser.parse("2x + 3x^2");
+        List<Token> rightAnswer = Arrays.asList(
+                new Token(NUMBER, "2"),
+                new Token(OPERATOR, "*"),
+                new Token(VARIABLE, "x"),
+                new Token(OPERATOR, "+"),
+                new Token(NUMBER, "3"),
+                new Token(OPERATOR, "*"),
+                new Token(VARIABLE, "x"),
+                new Token(OPERATOR, "^"),
+                new Token(NUMBER, "2")
+        );
+        Assertions.assertEquals(rightAnswer, parserAnswer);
+    }
+    @Test
+    public void test3 () {
+        Parser parser = new Parser();
+        ArrayList<Token> parserAnswer = parser.parse("3(x-5)(x+1)");
+        List<Token> rightAnswer = Arrays.asList(
+                new Token(NUMBER, "3"),
+                new Token(OPERATOR, "*"),
+                new Token(OPERATOR, "("),
+                new Token(VARIABLE, "x"),
+                new Token(OPERATOR, "-"),
+                new Token(NUMBER, "5"),
+                new Token(OPERATOR, ")"),
+                new Token(OPERATOR, "*"),
+                new Token(OPERATOR, "("),
+                new Token(VARIABLE, "x"),
+                new Token(OPERATOR, "+"),
+                new Token(NUMBER, "1"),
+                new Token(OPERATOR, ")")
+        );
+        Assertions.assertEquals(rightAnswer, parserAnswer);
+    }
 }
