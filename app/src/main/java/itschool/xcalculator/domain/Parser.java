@@ -24,12 +24,6 @@ public class Parser {
             char currentChar = text.charAt(i);
             if (operators.contains(currentChar)) {
                 tokens.add(new Token(OPERATOR, String.valueOf(currentChar)));
-                // возможность опустить знак умножения между скобками
-                if (i + 1 < text.length() && text.charAt(i + 1) == '(' && currentChar == ')') {
-                    tokens.add(new Token(OPERATOR, "*"));
-                    tokens.add(new Token(OPERATOR, "("));
-                    i++;
-                }
             } else if (Character.isDigit(currentChar)) {
                 StringBuilder number = new StringBuilder();
                 while (i < text.length() && (Character.isDigit(text.charAt(i)) || text.charAt(i) == '.')) {
@@ -37,16 +31,6 @@ public class Parser {
                     i++;
                 }
                 tokens.add(new Token(NUMBER, number.toString()));
-                // возможность опустить знак умножения между числом и переменной
-                if (i < text.length() && text.charAt(i) == 'x') {
-                    tokens.add(new Token(OPERATOR, "*"));
-                    tokens.add(new Token(VARIABLE, "x"));
-                    i++;
-                } else if (i < text.length() && text.charAt(i) == '(') {
-                    tokens.add(new Token(OPERATOR, "*"));
-                    tokens.add(new Token(OPERATOR, "("));
-                    i++;
-                }
                 i--;
             } else if (currentChar == 'x') {
                 tokens.add(new Token(VARIABLE, String.valueOf(currentChar)));
@@ -69,7 +53,59 @@ public class Parser {
             }
             i++;
         }
-        return tokens;
+        return desugar(tokens);
+    }
+
+    /**
+     * <h1>Возвращает в выражение пропущенные знаки умножения</h1>
+     * <ul>
+     *     <li>Между двумя числами (например, 2pi)</li>
+     *     <li>Между числом и переменной (например, 3x)</li>
+     *     <li>Между числом и открывающей скобкой</li>
+     *     <li>Между переменной и открывающей скобкой</li>
+     *     <li>Между закрывающей и открывающей скобками</li>
+     * </ul>
+     *
+     * <p>Алгоритм выдаст ошибку если найдет недопустимый пропуск оператора</p>
+     *
+     * @param tokens массив токенов из выражения с опущенными скобками
+     * @return массив токенов с восстановленными знаками умножения
+     */
+    private ArrayList<Token> desugar(ArrayList<Token> tokens) {
+        ArrayList<Token> output = new ArrayList<>();
+        for (int i = 0; i < tokens.size() - 1; i++) {
+            Token currentToken = tokens.get(i);
+            Token nextToken = tokens.get(i + 1);
+            output.add(currentToken);
+            boolean isBetweenTwoNumbers =
+                    currentToken.type == NUMBER && nextToken.type == NUMBER;
+            boolean isBetweenNumberAndVariable =
+                    currentToken.type == NUMBER && nextToken.type == VARIABLE;
+            boolean isBetweenNumberAndLeftBracket =
+                    currentToken.type == NUMBER && nextToken.isLeftBracket();
+            boolean isBetweenVariableAndLeftBracket =
+                    currentToken.type == VARIABLE && nextToken.isLeftBracket();
+            boolean isBetweenRightAndLeftBracket =
+                    currentToken.isRightBracket() && nextToken.isLeftBracket();
+            if (isBetweenTwoNumbers || isBetweenNumberAndVariable || isBetweenNumberAndLeftBracket
+                    || isBetweenVariableAndLeftBracket || isBetweenRightAndLeftBracket) {
+                output.add(new Token(OPERATOR, "*"));
+            } else {
+                // обработаем недопустимые пропуски оператора умножения
+                boolean isBetweenRightBracketAndNumber = // (1+2)3 - error, (1+2)*3 - correct
+                        currentToken.isRightBracket() && nextToken.type == NUMBER;
+                boolean isBetweenRightBracketAndVariable = // (1+2)x - error, (1+2)*x - correct
+                        currentToken.isRightBracket() && nextToken.type == VARIABLE;
+                boolean isBetweenVariableAndNumber = // x3 - error, 3x - correct
+                        currentToken.type == VARIABLE && nextToken.type == NUMBER;
+                if (isBetweenRightBracketAndNumber || isBetweenRightBracketAndVariable
+                        || isBetweenVariableAndNumber) {
+                    throw new RuntimeException("В выражении пропущен оператор умножения!");
+                }
+            }
+        }
+        output.add(tokens.get(tokens.size() - 1));
+        return output;
     }
 }
 
