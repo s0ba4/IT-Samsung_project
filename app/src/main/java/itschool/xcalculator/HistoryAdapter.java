@@ -47,17 +47,21 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
+        private final TextDecorator decorator;
 
         private final ItemHistoryBinding binding;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             binding = ItemHistoryBinding.bind(itemView);
+            decorator = new TextDecorator(itemView.getContext());
         }
 
         public void bind(@NonNull HistoryItem item) {
-            binding.expression.setText(item.getExpression());
-            binding.answer.setText(String.format("= %s", item.getAnswer()));
+            binding.getRoot().setOnClickListener((v) -> {});
+            binding.expression.setText(decorator.decorate(item.getExpression()));
+            binding.answer.setText(decorator.decorate(String.format("= %s", item.getAnswer())));
+
         }
     }
 }
