@@ -7,11 +7,21 @@
     android:background="@color/backgroundDark"
     tools:context=".MainActivity">
 
+
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:orientation="vertical">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/history"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/item_history"
+            tools:itemCount="1"/>
 
         <EditText
             android:id="@+id/input"
@@ -284,7 +294,7 @@
         app:behavior_peekHeight="48dp"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
         tools:behavior_peekHeight="400dp"
-        tools:visibility="visible">
+        tools:visibility="gone">
 
         <View
             android:layout_width="40dp"
@@ -451,5 +461,6 @@
             app:layout_constraintTop_toTopOf="@id/var" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

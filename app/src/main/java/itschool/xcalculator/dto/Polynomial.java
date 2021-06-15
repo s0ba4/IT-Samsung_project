@@ -56,9 +56,9 @@ public class Polynomial {
      */
 
     public Polynomial minus(Polynomial other) {
-        return (other.coeffs.length > coeffs.length)
-                ? doOperation(coeffs, other.coeffs, (a, b) -> b - a)
-                : doOperation(other.coeffs, coeffs, (a, b) -> b - a);
+        return (other.getOrder() > getOrder())
+                ? doOperation(coeffs, other.coeffs, (a, b) -> a - b)
+                : doOperation(other.coeffs, coeffs, (a, b) -> a - b);
     }
 
     /**

@@ -1,6 +1,8 @@
 package itschool.xcalculator;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -13,6 +15,7 @@ import itschool.xcalculator.domain.calculator.GeneralCalculator;
 import itschool.xcalculator.domain.calculator.NumericCalculator;
 import itschool.xcalculator.domain.Parser;
 import itschool.xcalculator.domain.PostfixConverter;
+import itschool.xcalculator.dto.HistoryItem;
 import itschool.xcalculator.dto.TrigonometricMode;
 
 public class MainActivity extends AppCompatActivity {
@@ -20,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     TextDecorator decorator;
     GeneralCalculator generalCalculator;
     TrigonometricMode mode = TrigonometricMode.DEGREES;
+    HistoryAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         decorator = new TextDecorator(getApplicationContext());
         generalCalculator = new GeneralCalculator();
         setContentView(binding.getRoot());
-
+        initHistoryRecycler();
         binding.input.setShowSoftInputOnFocus(false);
         binding.functionContainer.setOnClickListener((v) -> {
         });
@@ -55,12 +59,19 @@ public class MainActivity extends AppCompatActivity {
                         .replace('/', '÷')
                         .replace('*', '×');
                 binding.answer.setText(decorator.decorate(String.format("= %s", result)));
+                adapter.insertItem(new HistoryItem(expression, result));
             } catch (Exception exception) {
                 binding.answer.setText("В выражении ошибка");
                 exception.printStackTrace();
             }
         });
         renderButtons();
+    }
+
+    private void initHistoryRecycler() {
+        adapter = new HistoryAdapter();
+        binding.history.setLayoutManager(new LinearLayoutManager(this));
+        binding.history.setAdapter(adapter);
     }
 
     private void setupDigitButtons() {
