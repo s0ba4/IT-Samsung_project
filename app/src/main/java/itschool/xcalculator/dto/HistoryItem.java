@@ -4,10 +4,21 @@ public class HistoryItem {
 
     private String expression;
     private String answer;
+    private int id;
+
+    public HistoryItem(String expression, String answer, int id) {
+        this.expression = expression;
+        this.answer = answer;
+        this.id = id;
+    }
 
     public HistoryItem(String expression, String answer) {
         this.expression = expression;
         this.answer = answer;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getExpression() {
