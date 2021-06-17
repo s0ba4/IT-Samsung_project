@@ -77,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
             HistoryItem lastItem = historyItems.get(historyItems.size() - 1);
             binding.input.setText(decorator.decorate(lastItem.getExpression()));
             binding.answer.setText(decorator.decorate(String.format("= %s", lastItem.getAnswer())));
+            binding.input.setSelection(lastItem.getExpression().length());
         });
     }
 
