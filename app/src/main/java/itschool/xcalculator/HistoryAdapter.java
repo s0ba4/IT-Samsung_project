@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 import itschool.xcalculator.databinding.ItemHistoryBinding;
 import itschool.xcalculator.dto.HistoryItem;
@@ -16,6 +17,7 @@ import itschool.xcalculator.dto.HistoryItem;
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHolder> {
 
     private ArrayList<HistoryItem> data = new ArrayList<>();
+    private Consumer<HistoryItem> clickListener;
 
     @NonNull
     @Override
@@ -27,7 +29,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.bind(data.get(position));
+        holder.bind(data.get(position), clickListener);
     }
 
     @Override
@@ -45,10 +47,13 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
         notifyItemInserted(data.size() - 1);
     }
 
+    public void setClickListener(Consumer<HistoryItem> clickListener) {
+        this.clickListener = clickListener;
+    }
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         private final TextDecorator decorator;
-
         private final ItemHistoryBinding binding;
 
         public ViewHolder(@NonNull View itemView) {
@@ -57,11 +62,14 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
             decorator = new TextDecorator(itemView.getContext());
         }
 
-        public void bind(@NonNull HistoryItem item) {
-            binding.getRoot().setOnClickListener((v) -> {});
+        public void bind(@NonNull HistoryItem item, Consumer<HistoryItem> clickListener) {
+            binding.getRoot().setOnClickListener((v) -> {
+                if (clickListener != null) {
+                    clickListener.accept(item);
+                }
+            });
             binding.expression.setText(decorator.decorate(item.getExpression()));
             binding.answer.setText(decorator.decorate(String.format("= %s", item.getAnswer())));
-
         }
     }
 }

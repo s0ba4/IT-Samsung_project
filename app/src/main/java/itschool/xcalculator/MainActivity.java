@@ -79,6 +79,11 @@ public class MainActivity extends AppCompatActivity {
             binding.answer.setText(decorator.decorate(String.format("= %s", lastItem.getAnswer())));
             binding.input.setSelection(lastItem.getExpression().length());
         });
+        adapter.setClickListener((historyItem) -> {
+            binding.input.setText(decorator.decorate(historyItem.getExpression()));
+            binding.answer.setText(decorator.decorate(String.format("= %s", historyItem.getAnswer())));
+            binding.scrollView.fullScroll(View.FOCUS_DOWN);
+        });
     }
 
     private void waitForRecyclerViewAndScrollDown() {
