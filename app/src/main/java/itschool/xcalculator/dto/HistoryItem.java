@@ -1,5 +1,7 @@
 package itschool.xcalculator.dto;
 
+import java.util.Objects;
+
 public class HistoryItem {
 
     private String expression;
@@ -35,5 +37,29 @@ public class HistoryItem {
 
     public void setAnswer(String answer) {
         this.answer = answer;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof HistoryItem)) return false;
+        HistoryItem that = (HistoryItem) o;
+        return getId() == that.getId() &&
+                getExpression().equals(that.getExpression()) &&
+                getAnswer().equals(that.getAnswer());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getExpression(), getAnswer(), getId());
+    }
+
+    @Override
+    public String toString() {
+        return "HistoryItem{" +
+                "expression='" + expression + '\'' +
+                ", answer='" + answer + '\'' +
+                ", id=" + id +
+                '}';
     }
 }

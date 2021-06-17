@@ -2,7 +2,6 @@ package itschool.xcalculator;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -12,11 +11,9 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
 
+import itschool.xcalculator.database.DBWorker;
 import itschool.xcalculator.databinding.ActivityMainBinding;
 import itschool.xcalculator.domain.calculator.GeneralCalculator;
-import itschool.xcalculator.domain.calculator.NumericCalculator;
-import itschool.xcalculator.domain.Parser;
-import itschool.xcalculator.domain.PostfixConverter;
 import itschool.xcalculator.dto.HistoryItem;
 import itschool.xcalculator.dto.TrigonometricMode;
 
@@ -26,10 +23,12 @@ public class MainActivity extends AppCompatActivity {
     GeneralCalculator generalCalculator;
     TrigonometricMode mode = TrigonometricMode.DEGREES;
     HistoryAdapter adapter;
+    DBWorker dbWorker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        dbWorker = new DBWorker();
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         decorator = new TextDecorator(getApplicationContext());
         generalCalculator = new GeneralCalculator();
@@ -61,8 +60,10 @@ public class MainActivity extends AppCompatActivity {
                         .replace('/', '÷')
                         .replace('*', '×');
                 binding.answer.setText(decorator.decorate(String.format("= %s", result)));
-                adapter.insertItem(new HistoryItem(expression, result));
+                HistoryItem item = new HistoryItem(expression, result);
+                adapter.insertItem(item);
                 waitForRecyclerViewAndScrollDown();
+                dbWorker.saveHistoryItemAsync(item);
             } catch (Exception exception) {
                 binding.answer.setText("В выражении ошибка");
                 exception.printStackTrace();
@@ -70,16 +71,23 @@ public class MainActivity extends AppCompatActivity {
         });
         renderButtons();
         binding.scrollView.setSmoothScrollingEnabled(false);
+        dbWorker.getAllAsync(historyItems -> {
+            adapter.setData(historyItems);
+            waitForRecyclerViewAndScrollDown();
+            HistoryItem lastItem = historyItems.get(historyItems.size() - 1);
+            binding.input.setText(decorator.decorate(lastItem.getExpression()));
+            binding.answer.setText(decorator.decorate(String.format("= %s", lastItem.getAnswer())));
+        });
     }
 
     private void waitForRecyclerViewAndScrollDown() {
-        binding.history
+        binding.historyRecycler
                 .getViewTreeObserver()
                 .addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
                     @Override
                     public void onGlobalLayout() {
                         binding.scrollView.fullScroll(View.FOCUS_DOWN);
-                        binding.history
+                        binding.historyRecycler
                                 .getViewTreeObserver()
                                 .removeOnGlobalLayoutListener(this);
                     }
@@ -88,8 +96,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void initHistoryRecycler() {
         adapter = new HistoryAdapter();
-        binding.history.setLayoutManager(new LinearLayoutManager(this));
-        binding.history.setAdapter(adapter);
+        binding.historyRecycler.setLayoutManager(new LinearLayoutManager(this));
+        binding.historyRecycler.setAdapter(adapter);
     }
 
     private void setupDigitButtons() {

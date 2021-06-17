@@ -20,7 +20,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 "_id Integer primary key autoincrement, " +
                 "expr text not null, " +
                 "ans text not null" +
-                ")");
+                ");");
     }
 
     @Override

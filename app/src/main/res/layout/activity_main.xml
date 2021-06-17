@@ -21,7 +21,7 @@
             android:orientation="vertical">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/history"
+                android:id="@+id/history_recycler"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:itemCount="1"
